@@ -1,0 +1,12 @@
+### 修改日志
+
+记录在该项目上的提交，本文件的修改不计入在内。
+
+> 基于以下版本修改：
+>
+> GitVersion  36626e4d819c30da8e281594758559ec13f00679
+> MavenVersion  1.6.5-BETA
+> GitUrl  https://github.com/MyCATApache/Mycat-Server.git
+
+- 2018-5-17 `0e9cb6f20459dcf2491c51958ea50a06b1091199` 添加了根据字符子串取模计算分区号的分片算法[PartitionDirectBySubStringMod](https://github.com/Sunxiai51/Mycat-Server/blob/0e9cb6f20459dcf2491c51958ea50a06b1091199/src/main/java/io/mycat/route/function/PartitionDirectBySubStringMod.java)
+
