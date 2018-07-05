@@ -2,7 +2,7 @@
 <!DOCTYPE mycat:schema SYSTEM "schema.dtd">
 <mycat:schema xmlns:mycat="http://io.mycat/">
 
-	<schema name="ewallet_logic" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn0">
+	<schema name="ewallet_logic" checkSQLschema="false" sqlMaxLimit="100" dataNode="dnDefault">
 		<table name="info_individual_customer" primaryKey="id" dataNode="dn0,dn1,dn2,dn3" rule="by_customer_no" />
 		<table name="ant_account_info" primaryKey="id" dataNode="dn0,dn1,dn2,dn3" rule="by_customer_no" />
 		<table name="pay_remittance_receiver" primaryKey="id" dataNode="dn0,dn1,dn2,dn3" rule="by_customer_no" />
@@ -11,18 +11,17 @@
 		<table name="pay_trade_order" primaryKey="id" dataNode="dn0,dn1,dn2,dn3" rule="by_trade_no" />
 	</schema>
 	
-	<dataNode name="dn0" dataHost="localhost1" database="ewallet_mycat_0" />
-	<dataNode name="dn1" dataHost="localhost1" database="ewallet_mycat_1" />
-	<dataNode name="dn2" dataHost="localhost1" database="ewallet_mycat_2" />
-	<dataNode name="dn3" dataHost="localhost1" database="ewallet_mycat_3" />
-	
-	<dataHost name="localhost1" maxCon="1000" minCon="10" balance="0"
-			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
-		<heartbeat>select user()</heartbeat>
-		<writeHost host="hostM1" url="localhost:3306" user="root" password="123456">
-			<readHost host="hostS1" url="localhost:3306" user="root" password="123456" />
-		</writeHost>
-		
-	</dataHost>
+	<dataNode name="dnDefault" dataHost="ewallet_mysql" database="ewallet_mycat_default" />
+	<dataNode name="dn0" dataHost="ewallet_mysql" database="ewallet_mycat_0" />
+   	<dataNode name="dn1" dataHost="ewallet_mysql" database="ewallet_mycat_1" />
+   	<dataNode name="dn2" dataHost="ewallet_mysql" database="ewallet_mycat_2" />
+   	<dataNode name="dn3" dataHost="ewallet_mysql" database="ewallet_mycat_3" />
+   	
+   	<dataHost name="ewallet_mysql" maxCon="1000" minCon="20" balance="0" writeType="0" dbType="mysql" dbDriver="native" switchType="1" slaveThreshold="100">
+       	<heartbeat>select user()</heartbeat>
+      		<writeHost host="hostM1" url="168.33.131.159:3306" user="ewallet" password="123456">
+           		<readHost host="hostS1" url="168.33.131.159:3306" user="ewallet" password="123456" />
+       	</writeHost>
+   	</dataHost>
 	
 </mycat:schema>
